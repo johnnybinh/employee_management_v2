@@ -1,0 +1,1 @@
+ALTER TABLE "user_salaries" ALTER COLUMN "salary" SET DATA TYPE numeric;

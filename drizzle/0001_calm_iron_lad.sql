@@ -1,0 +1,1 @@
+ALTER TABLE "user_salaries" RENAME COLUMN "message" TO "salary";
