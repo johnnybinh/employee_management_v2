@@ -1,5 +1,15 @@
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import Database from "better-sqlite3";
+import { loadEnvConfig } from "@next/env";
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
+import { UserSalaries } from "./schema/schema";
 
-const sqlite = new Database("sqlite.db"); //init db
-export const db = drizzle({ client: sqlite });
+loadEnvConfig(process.cwd());
+
+if (!process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL must be a Neon postgres connection string");
+}
+
+const sql = neon(process.env.DATABASE_URL);
+export const db = drizzle(sql, {
+  schema: { UserSalaries },
+});

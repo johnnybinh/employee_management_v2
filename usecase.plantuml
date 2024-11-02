@@ -1,0 +1,40 @@
+@startuml
+
+left to right direction
+
+actor Employee as e1
+actor Admin as e2
+
+
+
+rectangle Employee_Management{
+    '  user/employee usecase   
+    usecase "View Salary" as VS
+    usecase "Create Leave Request" as CLT
+    usecase "View Task" as VT
+    usecase "Check Attendance" as CA
+    '  admin usecase   
+    usecase "Manage Salary" as MS
+    usecase "Manage Leave Request" as MLR
+    usecase "Denied" as DLR
+    usecase "Approve" as ALR
+    usecase "Manage Task" as MT
+    usecase "Create Task" as CT
+    usecase "Request Asignee" as RTA
+}
+e2-up->MS
+e2-up->MLR
+e2-up->MT
+
+
+e1--> VS
+e1--> VT
+e1--> CA
+e1--> CLT
+
+MLR .up.>ALR :include
+MLR .up.>DLR :include
+
+RTA .left.> MT
+
+@enduml
